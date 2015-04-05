@@ -22,8 +22,12 @@
             .bins(x.ticks(xMax))
             (values);
 
+        var extractor = function(d){
+            return d.y;
+        };
+
         var y = d3.scale.linear()
-            .domain([0, d3.max(data, function(d) { return d.y; })])
+            .domain([0, d3.max(data, extractor)])
             .range([height, 0]);
 
         var xAxis = d3.svg.axis()
