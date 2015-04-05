@@ -11,7 +11,7 @@
         var values = jsonData;
 
         var xMin = d3.min(values);
-        var xMax = d3.mmax(values) + 1;
+        var xMax = d3.max(values) + 1;
 
         var x = d3.scale.linear()
             .domain([xMin, xMax])
