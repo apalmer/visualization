@@ -40,23 +40,33 @@
           .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+        var transformer = function(d) { 
+            var val = "translate(" + x(d.x) + "," + y(d.y) + ")"; 
+            return val;
+        }; 
+        
         var bar = svg.selectAll(".bar")
             .data(data)
           .enter().append("g")
             .attr("class", "bar")
-            .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+            .attr("transform", transformer);
+
+        var getHeight = function(d) { 
+            var val = height - y(d.y); 
+            return val;
+        };
 
         bar.append("rect")
             .attr("x", 1)
             .attr("width", x(data[0].dx) - 1)
-            .attr("height", function(d) { return height - y(d.y); });
+            .attr("height", getHeight);
 
         bar.append("text")
             .attr("dy", ".75em")
             .attr("y", 6)
             .attr("x", x(data[0].dx) / 2)
             .attr("text-anchor", "middle")
-            .text(function(d) { return d.y; });
+            .text(extractor);
 
         svg.append("g")
             .attr("class", "x axis")
