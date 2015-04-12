@@ -1,6 +1,5 @@
 (function () {
 
-
     var svgWidth = 960,
         svgHeight = 500,
         svgMargin = { top: 20, right: 20, bottom: 30, left: 40 },
