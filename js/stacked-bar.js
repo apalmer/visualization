@@ -29,8 +29,9 @@
       .append('g')
         .attr('transform', 'translate(' + svgMargin.left + ',' + svgMargin.top + ')');
 
-    d3.json('data/stacked-bar.json', function(error, data){
+    d3.json('data/PROD Arrival Rates Raw Counts.json', function (error, data) {
 
+        data = _.filter(data, function (item, index) { return item.MessageType = "ORU" });
         var distinct = _.uniq(data, 'Name');
         var distinctNames = _.map(distinct, 'Name');
         color.domain(distinctNames);
